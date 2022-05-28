@@ -20,4 +20,15 @@ class Product extends Model
         'stock',
         'discount',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
 }

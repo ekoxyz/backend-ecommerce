@@ -15,4 +15,13 @@ class Customer extends Model
         'remember_token',
         'email_verified_at',
     ];
+
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

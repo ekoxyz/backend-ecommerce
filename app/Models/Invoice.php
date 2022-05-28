@@ -11,4 +11,21 @@ class Invoice extends Model
     protected $fillable=[
         'invoice', 'customer_id', 'courier', 'courier_service', 'courier_cost', 'weight', 'name', 'phone', 'city_id', 'province_id', 'address', 'status', 'grand_total', 'snap_token'
     ];
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id','city_id');
+    }
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province_id','province_id');
+    }
 }
