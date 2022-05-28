@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,9 @@ class Customer extends Model
         'email_verified_at',
     ];
 
+    /**
+     * Model Realtionship
+     */
     public function invoice()
     {
         return $this->hasMany(Invoice::class);
@@ -24,4 +28,16 @@ class Customer extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    /**
+     * Accessor
+     */
+    public function getCreatedAtAttribute($date)
+    {
+        // return date('d-m-Y', strtotime($value));
+        $value = Carbon::parse($date);
+        $parse = $value->locale('id');
+        return $parse->translatedFormat('l, d F Y');
+    }
+
 }

@@ -15,8 +15,20 @@ class Category extends Model
         'image',
     ];
 
+    /**
+     * Model Realtionship
+     */
     public function product()
     {
         return $this->hasMany(Product::class);
     }
+
+    /**
+     * Accessor
+     */
+    public function getImageAttribute($value)
+    {
+        return asset('storage/categories' . $value);
+    }
+
 }
